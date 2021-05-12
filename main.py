@@ -6,11 +6,19 @@ from matplotlib.patches import Circle
 
 # L - długości ramienia wahadła (m)
 # m - masa obciążenia (kg)
-L1, L2 = 1, 1
+L1, L2 = 2, 1
 m1, m2 = 0.5, 0.5
 
-# Przyspieszenie grawitacyjne (m/s^2).
+# Przyspieszenie grawitacyjne (m/s^2)
 g = 9.81
+
+# Klatkaż animacji
+fps = 12
+
+# tmax - czas animacji (s)
+# dt - odstępy (s)
+tmax = 30
+dt = 0.01
 
 def deriv(y, t, L1, L2, m1, m2):
     """Zwraca pochodne y = theta1, z1, theta2, z2."""
@@ -35,8 +43,7 @@ def calc_E(y):
             2*L1*L2*th1d*th2d*np.cos(th1-th2))
     return T + V
 
-# Maximum time, time point spacings and the time grid (all in s).
-tmax, dt = 30, 0.01
+
 t = np.arange(0, tmax+dt, dt)
 # Initial conditions: theta1, dtheta1/dt, theta2, dtheta2/dt.
 y0 = np.array([3*np.pi/7, 0, 3*np.pi/4, 0])
@@ -63,9 +70,9 @@ y2 = y1 - L2 * np.cos(theta2)
 # Plotted bob circle radius
 r = 0.05
 # Plot a trail of the m2 bob's position for the last trail_secs seconds.
-trail_secs = 1
+trail2_secs = 1
 # This corresponds to max_trail time points.
-max_trail = int(trail_secs / dt)
+max_trail2 = int(trail2_secs / dt)
 
 def make_plot(i):
     # Plot and save an image of the double pendulum configuration for time
@@ -82,7 +89,7 @@ def make_plot(i):
 
     # The trail will be divided into ns segments and plotted as a fading line.
     ns = 20
-    s = max_trail // ns
+    s = max_trail2 // ns
 
     for j in range(ns):
         imin = i - (ns-j)*s
@@ -93,6 +100,8 @@ def make_plot(i):
         # trail.
         alpha = (j/ns)**2
         ax.plot(x2[imin:imax], y2[imin:imax], c='r', solid_capstyle='butt',
+                lw=2, alpha=alpha)
+        ax.plot(x1[imin:imax], y1[imin:imax], c='b', solid_capstyle='butt',
                 lw=2, alpha=alpha)
 
     # Centre the image on the fixed anchor point, and ensure the axes are equal
@@ -107,7 +116,7 @@ def make_plot(i):
 # Make an image every di time points, corresponding to a frame rate of fps
 # frames per second.
 # Frame rate, s-1
-fps = 10
+
 di = int(1/fps/dt)
 fig = plt.figure(figsize=(8.3333, 6.25), dpi=72)
 ax = fig.add_subplot(111)
