@@ -4,14 +4,16 @@ from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle
 
-# Pendulum rod lengths (m), bob masses (kg).
+# L - długości ramienia wahadła (m)
+# m - masa obciążenia (kg)
 L1, L2 = 1, 1
 m1, m2 = 0.5, 0.5
-# The gravitational acceleration (m.s-2).
+
+# Przyspieszenie grawitacyjne (m/s^2).
 g = 9.81
 
 def deriv(y, t, L1, L2, m1, m2):
-    """Return the first derivatives of y = theta1, z1, theta2, z2."""
+    """Zwraca pochodne y = theta1, z1, theta2, z2."""
     theta1, z1, theta2, z2 = y
 
     c, s = np.cos(theta1-theta2), np.sin(theta1-theta2)
@@ -25,7 +27,7 @@ def deriv(y, t, L1, L2, m1, m2):
     return theta1dot, z1dot, theta2dot, z2dot
 
 def calc_E(y):
-    """Return the total energy of the system."""
+    """Zwraca całkowitą energię układu"""
 
     th1, th1d, th2, th2d = y.T
     V = -(m1+m2)*L1*g*np.cos(th1) - m2*L2*g*np.cos(th2)
