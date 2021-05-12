@@ -3,6 +3,14 @@ import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle
+import imageio
+from pathlib import Path
+import os
+import glob
+
+# Kąty początkowe alfa mas m
+alfa_start1 = 0
+alfa_start2 = 0
 
 # L - długości ramienia wahadła (m)
 # m - masa obciążenia (kg)
@@ -17,21 +25,32 @@ fps = 12
 
 # tmax - czas animacji (s)
 # dt - odstępy (s)
-tmax = 30
+tmax = 10
 dt = 0.01
+
+# s decyduje czy rysować ślady masy m
+s1 = True
+s2 = True
+
+files = glob.glob('frames/*.png') # Usuwanie poprzednich zdjęć w folderze frames
+for f in files:
+    os.remove(f)
 
 def deriv(y, t, L1, L2, m1, m2):
     """Zwraca pochodne y = theta1, z1, theta2, z2."""
+
     theta1, z1, theta2, z2 = y
 
-    c, s = np.cos(theta1-theta2), np.sin(theta1-theta2)
+    c, s = np.cos(theta1-theta2), np.sin(theta1-theta2) #definicja cosinusa i sinusa różnicy theta1 - theta2
 
     theta1dot = z1
     z1dot = (m2*g*np.sin(theta2)*c - m2*s*(L1*z1**2*c + L2*z2**2) -
              (m1+m2)*g*np.sin(theta1)) / L1 / (m1 + m2*s**2)
+
     theta2dot = z2
     z2dot = ((m1+m2)*(L1*z1**2*s - g*np.sin(theta2) + g*np.sin(theta1)*c) +
              m2*L2*z2**2*s*c) / L2 / (m1 + m2*s**2)
+
     return theta1dot, z1dot, theta2dot, z2dot
 
 def calc_E(y):
@@ -45,10 +64,10 @@ def calc_E(y):
 
 
 t = np.arange(0, tmax+dt, dt)
-# Initial conditions: theta1, dtheta1/dt, theta2, dtheta2/dt.
-y0 = np.array([3*np.pi/7, 0, 3*np.pi/4, 0])
+# Początkowe warunki: kąty startowe alfa zdefiniowane przez użytkownika i pochodne = 0
+y0 = np.array([alfa_start1 + np.pi/2, 0, alfa_start2 + np.pi/2, 0])
 
-# Do the numerical integration of the equations of motion
+# Numeryczne całkowanie równań ruchu
 y = odeint(deriv, y0, t, args=(L1, L2, m1, m2))
 
 # Check that the calculation conserves total energy to within some tolerance.
@@ -56,7 +75,7 @@ EDRIFT = 0.05
 # Total energy from the initial conditions
 E = calc_E(y0)
 if np.max(np.sum(np.abs(calc_E(y) - E))) > EDRIFT:
-    sys.exit('Maximum energy drift of {} exceeded.'.format(EDRIFT))
+    sys.exit("Nie udało się poprawnie wyznaczyć energii układu".format(EDRIFT))
 
 # Unpack z and theta as a function of time
 theta1, theta2 = y[:,0], y[:,2]
@@ -96,13 +115,12 @@ def make_plot(i):
         if imin < 0:
             continue
         imax = imin + s + 1
-        # The fading looks better if we square the fractional length along the
-        # trail.
+        # Ślad wygląda lepiej jeśli podniesiemy (j/ns) do kwadratu
         alpha = (j/ns)**2
-        ax.plot(x2[imin:imax], y2[imin:imax], c='r', solid_capstyle='butt',
-                lw=2, alpha=alpha)
-        ax.plot(x1[imin:imax], y1[imin:imax], c='b', solid_capstyle='butt',
-                lw=2, alpha=alpha)
+        if s2 == True:
+            ax.plot(x2[imin:imax], y2[imin:imax], c='r', solid_capstyle='butt', lw=2, alpha=alpha)
+        if s1 == True:
+            ax.plot(x1[imin:imax], y1[imin:imax], c='b', solid_capstyle='butt', lw=2, alpha=alpha)
 
     # Centre the image on the fixed anchor point, and ensure the axes are equal
     ax.set_xlim(-L1-L2-r, L1+L2+r)
@@ -113,14 +131,24 @@ def make_plot(i):
     plt.cla()
 
 
-# Make an image every di time points, corresponding to a frame rate of fps
-# frames per second.
-# Frame rate, s-1
+# Tworzenie obrazka co jedną klatkę
 
 di = int(1/fps/dt)
-fig = plt.figure(figsize=(8.3333, 6.25), dpi=72)
+fig = plt.figure(figsize=(10, 10), dpi=72)
 ax = fig.add_subplot(111)
 
 for i in range(0, t.size, di):
-    print(i // di, '/', t.size // di)
+    print("Renderowanie klatek", i // di, 'z', t.size // di)
     make_plot(i)
+
+image_path = Path('frames')
+images = list(image_path.glob('*.png'))
+image_list = []
+for file_name in images:
+    image_list.append(imageio.imread(file_name))
+
+print("Znaleziono klatek: ", len(image_list))
+
+imageio.mimwrite('Animacja.gif', image_list, fps = fps)
+
+print("Proces zakończony sukcesem, utowrzono folder z kolejnymi klatkami oraz animację gif")
