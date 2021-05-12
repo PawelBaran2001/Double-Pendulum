@@ -1,2 +1,3 @@
-# Double-Pendulum
-Simulation of a double pendulum 
+# Double-Pendulum by Paweł Baran & Hubert Gołębiowski
+
+Symulacja

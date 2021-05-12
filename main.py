@@ -21,11 +21,11 @@ m1, m2 = 0.5, 0.5
 g = 9.81
 
 # Klatkaż animacji
-fps = 12
+fps = 24
 
 # tmax - czas animacji (s)
 # dt - odstępy czasowe (s)
-tmax = 10
+tmax = 5
 dt = 0.01
 
 # s decyduje czy rysować ślady masy m
