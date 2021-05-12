@@ -24,13 +24,19 @@ g = 9.81
 fps = 12
 
 # tmax - czas animacji (s)
-# dt - odstępy (s)
+# dt - odstępy czasowe (s)
 tmax = 10
 dt = 0.01
 
 # s decyduje czy rysować ślady masy m
 s1 = True
 s2 = True
+
+# Promień rysowanego koła
+r = 0.03
+
+# Rysuje ślad masy m dla ostatnich trail_secs sekund
+trail_secs = 1
 
 files = glob.glob('frames/*.png') # Usuwanie poprzednich zdjęć w folderze frames
 for f in files:
@@ -80,22 +86,17 @@ if np.max(np.sum(np.abs(calc_E(y) - E))) > EDRIFT:
 # Unpack z and theta as a function of time
 theta1, theta2 = y[:,0], y[:,2]
 
-# Convert to Cartesian coordinates of the two bob positions.
+# Zamiana na współrzędne kartezjańskie położeń obu mas
 x1 = L1 * np.sin(theta1)
 y1 = -L1 * np.cos(theta1)
 x2 = x1 + L2 * np.sin(theta2)
 y2 = y1 - L2 * np.cos(theta2)
 
-# Plotted bob circle radius
-r = 0.05
-# Plot a trail of the m2 bob's position for the last trail_secs seconds.
-trail2_secs = 1
-# This corresponds to max_trail time points.
-max_trail2 = int(trail2_secs / dt)
+# Maksymalna ilość punktów rysowanego śladu
+max_trail = int(trail_secs / dt)
 
 def make_plot(i):
-    # Plot and save an image of the double pendulum configuration for time
-    # point i.
+    # Renderuje i zapiuje klatkę chwilowego położenia mas i prętów w chwili i
     # The pendulum rods.
     ax.plot([0, x1[i], x2[i]], [0, y1[i], y2[i]], lw=2, c='k')
     # Circles representing the anchor point of rod 1, and bobs 1 and 2.
@@ -108,7 +109,7 @@ def make_plot(i):
 
     # The trail will be divided into ns segments and plotted as a fading line.
     ns = 20
-    s = max_trail2 // ns
+    s = max_trail // ns
 
     for j in range(ns):
         imin = i - (ns-j)*s
