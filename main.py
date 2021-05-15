@@ -7,10 +7,11 @@ import imageio
 from pathlib import Path
 import os
 import glob
+import math
 
-# Kąty początkowe alfa mas m
-alfa_start1 = 0
-alfa_start2 = 0
+# Kąty początkowe alfa mas m (w mierze kątowej od 0 do 359 stopni) radzę nie wpisywać 90 i 270 oraz ich wielokrotności
+alfa_start1 = 405
+alfa_start2 = 405
 
 # L - długości ramienia wahadła (m)
 # m - masa obciążenia (kg)
@@ -25,15 +26,17 @@ fps = 24
 
 # tmax - czas animacji (s)
 # dt - odstępy czasowe (s)
-tmax = 5
+tmax = 6
 dt = 0.01
 
 # s decyduje czy rysować ślady masy m
 s1 = True
 s2 = True
 
-# Promień rysowanego koła
-r = 0.03
+# Promień rysowanego koła i kolory mas 1 i 2
+r = 0.05
+kolor1 = "b"
+kolor2 = "r"
 
 # Rysuje ślad masy m dla ostatnich trail_secs sekund
 trail_secs = 1
@@ -43,7 +46,7 @@ for f in files:
     os.remove(f)
 
 def deriv(y, t, L1, L2, m1, m2):
-    """Zwraca pochodne y = theta1, z1, theta2, z2."""
+    # Zwraca pochodne y = theta1, z1, theta2, z2
 
     theta1, z1, theta2, z2 = y
 
@@ -71,19 +74,19 @@ def calc_E(y):
 
 t = np.arange(0, tmax+dt, dt)
 # Początkowe warunki: kąty startowe alfa zdefiniowane przez użytkownika i pochodne = 0
-y0 = np.array([alfa_start1 + np.pi/2, 0, alfa_start2 + np.pi/2, 0])
+y0 = np.array([math.radians(alfa_start1) + np.pi/2, 0, math.radians(alfa_start2) + np.pi/2, 0])
 
 # Numeryczne całkowanie równań ruchu
 y = odeint(deriv, y0, t, args=(L1, L2, m1, m2))
 
-# Check that the calculation conserves total energy to within some tolerance.
+# Sprawdza czy energia zgadza się ze stanem faktycznym
 EDRIFT = 0.05
-# Total energy from the initial conditions
+# Całkowita energia początkowa
 E = calc_E(y0)
 if np.max(np.sum(np.abs(calc_E(y) - E))) > EDRIFT:
     sys.exit("Nie udało się poprawnie wyznaczyć energii układu".format(EDRIFT))
 
-# Unpack z and theta as a function of time
+# z i theta w funkcji czasu
 theta1, theta2 = y[:,0], y[:,2]
 
 # Zamiana na współrzędne kartezjańskie położeń obu mas
@@ -97,17 +100,16 @@ max_trail = int(trail_secs / dt)
 
 def make_plot(i):
     # Renderuje i zapiuje klatkę chwilowego położenia mas i prętów w chwili i
-    # The pendulum rods.
     ax.plot([0, x1[i], x2[i]], [0, y1[i], y2[i]], lw=2, c='k')
-    # Circles representing the anchor point of rod 1, and bobs 1 and 2.
+    # Kulki kolejno punktu kotwiczenia, masy 1 i masy 2
     c0 = Circle((0, 0), r/2, fc='k', zorder=10)
-    c1 = Circle((x1[i], y1[i]), r, fc='b', ec='b', zorder=10)
-    c2 = Circle((x2[i], y2[i]), r, fc='r', ec='r', zorder=10)
+    c1 = Circle((x1[i], y1[i]), r, fc=kolor1, ec=kolor1, zorder=10)
+    c2 = Circle((x2[i], y2[i]), r, fc=kolor2, ec=kolor2, zorder=10)
     ax.add_patch(c0)
     ax.add_patch(c1)
     ax.add_patch(c2)
 
-    # The trail will be divided into ns segments and plotted as a fading line.
+    # Slad jest podzielony na ns segmentów i cieniowany aby znikał po pewnym czasie
     ns = 20
     s = max_trail // ns
 
@@ -118,12 +120,12 @@ def make_plot(i):
         imax = imin + s + 1
         # Ślad wygląda lepiej jeśli podniesiemy (j/ns) do kwadratu
         alpha = (j/ns)**2
-        if s2 == True:
-            ax.plot(x2[imin:imax], y2[imin:imax], c='r', solid_capstyle='butt', lw=2, alpha=alpha)
         if s1 == True:
-            ax.plot(x1[imin:imax], y1[imin:imax], c='b', solid_capstyle='butt', lw=2, alpha=alpha)
+            ax.plot(x1[imin:imax], y1[imin:imax], c=kolor1, solid_capstyle='butt', lw=2, alpha=alpha)
+        if s2 == True:
+            ax.plot(x2[imin:imax], y2[imin:imax], c=kolor2, solid_capstyle='butt', lw=2, alpha=alpha)
 
-    # Centre the image on the fixed anchor point, and ensure the axes are equal
+    # Wyśrodkowanie obrazka i wyrównanie osi żeby były identyczne
     ax.set_xlim(-L1-L2-r, L1+L2+r)
     ax.set_ylim(-L1-L2-r, L1+L2+r)
     ax.set_aspect('equal', adjustable='box')
@@ -132,14 +134,12 @@ def make_plot(i):
     plt.cla()
 
 
-# Tworzenie obrazka co jedną klatkę
-
 di = int(1/fps/dt)
 fig = plt.figure(figsize=(10, 10), dpi=72)
 ax = fig.add_subplot(111)
 
 for i in range(0, t.size, di):
-    print("Renderowanie klatek", i // di, 'z', t.size // di)
+    print("Renderowanie klatek", i // di + 1, 'z', t.size // di + 1)
     make_plot(i)
 
 image_path = Path('frames')
@@ -148,7 +148,7 @@ image_list = []
 for file_name in images:
     image_list.append(imageio.imread(file_name))
 
-print("Znaleziono klatek: ", len(image_list))
+print("Znaleziono klatek: ", len(image_list), ". Trwa tworzenie animacji ...")
 
 imageio.mimwrite('Animacja.gif', image_list, fps = fps)
 
