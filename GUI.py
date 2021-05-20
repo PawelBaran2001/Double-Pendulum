@@ -1,5 +1,4 @@
 import sys
-import time
 import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
@@ -9,39 +8,40 @@ from pathlib import Path
 import os
 import glob
 import math
-import PySimpleGUI as sg
+import PySimpleGUI as sG
 
-sg.theme('DarkGrey2')   #ustawienie koloru okna
+sG.theme('DarkGrey2')   # ustawienie koloru okna
 
-col1 = [    [sg.Text("Kąt początkowy pierwszej masy:")],
-            [sg.Text("Kąt początkowy drugiej masy:")],
-            [sg.Text("Masa pierwsza:")],
-            [sg.Text("Masa druga:")],
-            [sg.Text("Ramię pierwsze:")],
-            [sg.Text("Ramię drugie:")],
-            [sg.Text("Przyspieszenie ziemskie:")]]
+col1 = [[sG.Text("Kąt początkowy pierwszej masy:")],
+        [sG.Text("Kąt początkowy drugiej masy:")],
+        [sG.Text("Masa pierwsza:")],
+        [sG.Text("Masa druga:")],
+        [sG.Text("Ramię pierwsze:")],
+        [sG.Text("Ramię drugie:")],
+        [sG.Text("Przyspieszenie ziemskie:")]]
 
-col2 = [    [sg.Input(default_text=0)],  # value 0
-            [sg.Input(default_text=0)],  # value 1
-            [sg.Input(default_text=0.5)],  # value2
-            [sg.Input(default_text=0.5)],  # value3
-            [sg.Input(default_text=1)],  # value4
-            [sg.Input(default_text=1)],  # value5
-            [sg.Input(default_text=9.81)], ] # value6
+col2 = [[sG.Input(default_text=0)],  # value 0
+        [sG.Input(default_text=0)],  # value 1
+        [sG.Input(default_text=0.5)],  # value2
+        [sG.Input(default_text=0.5)],  # value3
+        [sG.Input(default_text=1)],  # value4
+        [sG.Input(default_text=1)],  # value5
+        [sG.Input(default_text=9.81)], ]  # value6
 
-col3 = [    [sg.Text("stopni")],
-            [sg.Text("stopni")],
-            [sg.Text("kg")],
-            [sg.Text("kg")],
-            [sg.Text("m")],
-            [sg.Text("m")],
-            [sg.Text("m/s^2")]]
+col3 = [[sG.Text("stopni")],
+        [sG.Text("stopni")],
+        [sG.Text("kg")],
+        [sG.Text("kg")],
+        [sG.Text("m")],
+        [sG.Text("m")],
+        [sG.Text("m/s^2")]]
 
-layout = [[sg.Column(col1), sg.Column(col2), sg.Column(col3)],
-          [sg.Button("Symulacja")],
-          [sg.Output(size=(82,5))]]
+layout = [[sG.Column(col1), sG.Column(col2), sG.Column(col3)],
+          [sG.Button("Symulacja")],
+          [sG.Output(size=(82, 5))]]
 
-window = sg.Window("Symulator wahadła podwójnego", layout, element_justification="center") #tworzenie okna
+window = sG.Window("Symulator wahadła podwójnego", layout, element_justification="center")  # tworzenie okna
+
 
 def wahadlo():
 
@@ -51,8 +51,8 @@ def wahadlo():
 
         # L - długości ramienia wahadła (m)
         # m - masa obciążenia (kg)
-        L1 = float(values[4])
-        L2 = float(values[5])
+        l1 = float(values[4])
+        l2 = float(values[5])
         m1 = float(values[2])
         m2 = float(values[3])
 
@@ -84,7 +84,7 @@ def wahadlo():
             os.remove(f)
 
 
-        def deriv(y, t, L1, L2, m1, m2):
+        def deriv(y, t, l1, l2, m1, m2):
             # Zwraca pochodne y = theta1, z1, theta2, z2
 
             theta1, z1, theta2, z2 = y
@@ -92,12 +92,12 @@ def wahadlo():
             c, s = np.cos(theta1 - theta2), np.sin(theta1 - theta2)  # definicja cosinusa i sinusa różnicy theta1 - theta2
 
             theta1dot = z1
-            z1dot = (m2 * g * np.sin(theta2) * c - m2 * s * (L1 * z1 ** 2 * c + L2 * z2 ** 2) -
-                     (m1 + m2) * g * np.sin(theta1)) / L1 / (m1 + m2 * s ** 2)
+            z1dot = (m2 * g * np.sin(theta2) * c - m2 * s * (l1 * z1 ** 2 * c + l2 * z2 ** 2) -
+                     (m1 + m2) * g * np.sin(theta1)) / l1 / (m1 + m2 * s ** 2)
 
             theta2dot = z2
-            z2dot = ((m1 + m2) * (L1 * z1 ** 2 * s - g * np.sin(theta2) + g * np.sin(theta1) * c) +
-                     m2 * L2 * z2 ** 2 * s * c) / L2 / (m1 + m2 * s ** 2)
+            z2dot = ((m1 + m2) * (l1 * z1 ** 2 * s - g * np.sin(theta2) + g * np.sin(theta1) * c) +
+                     m2 * l2 * z2 ** 2 * s * c) / l2 / (m1 + m2 * s ** 2)
 
             return theta1dot, z1dot, theta2dot, z2dot
 
@@ -105,9 +105,9 @@ def wahadlo():
         def calc_E(y):  # Zwraca całkowitą energię układu
 
             th1, th1d, th2, th2d = y.T
-            V = -(m1 + m2) * L1 * g * np.cos(th1) - m2 * L2 * g * np.cos(th2)
-            T = 0.5 * m1 * (L1 * th1d) ** 2 + 0.5 * m2 * ((L1 * th1d) ** 2 + (L2 * th2d) ** 2 +
-                                                          2 * L1 * L2 * th1d * th2d * np.cos(th1 - th2))
+            V = -(m1 + m2) * l1 * g * np.cos(th1) - m2 * l2 * g * np.cos(th2)
+            T = 0.5 * m1 * (l1 * th1d) ** 2 + 0.5 * m2 * ((l1 * th1d) ** 2 + (l2 * th2d) ** 2 +
+                                                          2 * l1 * l2 * th1d * th2d * np.cos(th1 - th2))
             return T + V
 
 
@@ -116,7 +116,7 @@ def wahadlo():
         y0 = np.array([math.radians(alfa_start1) + np.pi / 2, 0, math.radians(alfa_start2) + np.pi / 2, 0])
 
         # Numeryczne całkowanie równań ruchu
-        y = odeint(deriv, y0, t, args=(L1, L2, m1, m2))
+        y = odeint(deriv, y0, t, args=(l1, l2, m1, m2))
 
         # Sprawdza czy energia zgadza się ze stanem faktycznym
         EDRIFT = 0.05
@@ -129,10 +129,10 @@ def wahadlo():
         theta1, theta2 = y[:, 0], y[:, 2]
 
         # Zamiana na współrzędne kartezjańskie położeń obu mas
-        x1 = L1 * np.sin(theta1)
-        y1 = -L1 * np.cos(theta1)
-        x2 = x1 + L2 * np.sin(theta2)
-        y2 = y1 - L2 * np.cos(theta2)
+        x1 = l1 * np.sin(theta1)
+        y1 = -l1 * np.cos(theta1)
+        x2 = x1 + l2 * np.sin(theta2)
+        y2 = y1 - l2 * np.cos(theta2)
 
         # Maksymalna ilość punktów rysowanego śladu
         max_trail = int(trail_secs / dt)
@@ -166,8 +166,8 @@ def wahadlo():
                     ax.plot(x2[imin:imax], y2[imin:imax], c=kolor2, solid_capstyle='butt', lw=2, alpha=alpha)
 
             # Wyśrodkowanie obrazka i wyrównanie osi żeby były identyczne
-            ax.set_xlim(-L1 - L2 - r, L1 + L2 + r)
-            ax.set_ylim(-L1 - L2 - r, L1 + L2 + r)
+            ax.set_xlim(-l1 - l2 - r, l1 + l2 + r)
+            ax.set_ylim(-l1 - l2 - r, l1 + l2 + r)
             ax.set_aspect('equal', adjustable='box')
             plt.axis('off')
             plt.savefig('frames/_img{:04d}.png'.format(i // di), dpi=72)
@@ -203,7 +203,7 @@ def wahadlo():
 
 while True:
     event, values = window.read()
-    if event == sg.WIN_CLOSED:  # jeżeli uzytkownik zamyka okno
+    if event == sG.WIN_CLOSED:  # jeżeli uzytkownik zamyka okno
         break
     wahadlo()
 
