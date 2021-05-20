@@ -10,12 +10,12 @@ import glob
 import math
 
 # Kąty początkowe alfa mas m (w mierze kątowej od 0 do 359 stopni) radzę nie wpisywać 90 i 270 oraz ich wielokrotności
-alfa_start1 = 405
-alfa_start2 = 405
+alfa_start1 = 0
+alfa_start2 = 0
 
 # L - długości ramienia wahadła (m)
 # m - masa obciążenia (kg)
-L1, L2 = 2, 1
+L1, L2 = 1, 1
 m1, m2 = 0.5, 0.5
 
 # Przyspieszenie grawitacyjne (m/s^2)
@@ -62,8 +62,7 @@ def deriv(y, t, L1, L2, m1, m2):
 
     return theta1dot, z1dot, theta2dot, z2dot
 
-def calc_E(y):
-    """Zwraca całkowitą energię układu"""
+def calc_E(y): #Zwraca całkowitą energię układu
 
     th1, th1d, th2, th2d = y.T
     V = -(m1+m2)*L1*g*np.cos(th1) - m2*L2*g*np.cos(th2)
