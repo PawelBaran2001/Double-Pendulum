@@ -119,9 +119,10 @@ def wykonanie():
 
             # L - długości ramienia wahadła (m)
             # m - masa obciążenia (kg)
-            L1, L2 = float(values[4]), float(values[5])
-            m1, m2 = float(values[2]), float(values[3])
-            print(m1, m2)
+            L1 = float(values[4])
+            L2 = float(values[5])
+            m1 = float(values[2])
+            m2 = float(values[3])
 
             # Przyspieszenie grawitacyjne (m/s^2)
             g = float(values[6])
