@@ -92,8 +92,8 @@ def wahadlo():
         s2 = values["slad2"]
 
         # Promień rysowanych kulek uzaleznione od mas i kolory mas 1 i 2
-        r1 = float(values[2]) ** 0.33/10
-        r2 = float(values[3]) ** 0.33/10
+        r1 = float(values[2]) ** 0.33/20
+        r2 = float(values[3]) ** 0.33/20
 
         if values["kolor1"] == "Czerwony":
             kolor1 = "r"
