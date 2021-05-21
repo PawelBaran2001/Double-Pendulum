@@ -18,15 +18,29 @@ col1 = [[sG.Text("Kąt początkowy pierwszej masy:")],
         [sG.Text("Masa druga:")],
         [sG.Text("Ramię pierwsze:")],
         [sG.Text("Ramię drugie:")],
-        [sG.Text("Przyspieszenie ziemskie:")]]
+        [sG.Text("Przyspieszenie ziemskie:")],
+        [sG.Text("Klatkaż animacji:")],
+        [sG.Text("Czas animacji:")],
+        [sG.Text("Kolor masy pierwszej:")],
+        [sG.Text("Kolor masy drugiej:")],
+        [sG.Text("Rysowanie śladu masy pierwszej:")],
+        [sG.Text("Rysowanie śladu masy drugiej:")]]
+
 
 col2 = [[sG.Input(default_text=0)],  # value 0
         [sG.Input(default_text=0)],  # value 1
-        [sG.Input(default_text=0.5)],  # value2
-        [sG.Input(default_text=0.5)],  # value3
-        [sG.Input(default_text=1)],  # value4
-        [sG.Input(default_text=1)],  # value5
-        [sG.Input(default_text=9.81)], ]  # value6
+        [sG.Input(default_text=0.5)],  # value 2
+        [sG.Input(default_text=0.5)],  # value 3
+        [sG.Input(default_text=1)],  # value 4
+        [sG.Input(default_text=1)],  # value 5
+        [sG.Input(default_text=9.81)],  # value 6
+        [sG.Input(default_text=25)],  # value 7
+        [sG.Input(default_text=6)],  # value 8
+        [sG.Combo(["Czerwony", "Zielony", "Niebieski", "Yellow                                    "], default_value="Zielony", key="kolor1")],  # kolor1 value9
+        [sG.Combo(["Czerwony", "Zielony", "Niebieski", "Yellow                                    "], default_value="Czerwony", key="kolor2")],  # kolor2 value10
+        [sG.Checkbox("Tak", key="slad1", default=True)],  # slad1 value11
+        [sG.Checkbox("Tak", key="slad2", default=True)]]  # slad2 value12
+
 
 col3 = [[sG.Text("stopni")],
         [sG.Text("stopni")],
@@ -34,10 +48,16 @@ col3 = [[sG.Text("stopni")],
         [sG.Text("kg")],
         [sG.Text("m")],
         [sG.Text("m")],
-        [sG.Text("m/s^2")]]
+        [sG.Text("m/s^2")],
+        [sG.Text("FPS")],
+        [sG.Text("s")],
+        [sG.Text("")],
+        [sG.Text("")],
+        [sG.Text("")],
+        [sG.Text("")]]
 
 layout = [[sG.Column(col1), sG.Column(col2), sG.Column(col3)],
-          [sG.Button("Symulacja")],
+          [sG.Button("   Symulacja   ")],
           [sG.Output(size=(82, 5))]]
 
 window = sG.Window("Symulator wahadła podwójnego", layout, element_justification="center")  # tworzenie okna
@@ -60,21 +80,37 @@ def wahadlo():
         g = float(values[6])
 
         # Klatkaż animacji
-        fps = 24
+        fps = int(values[7])
 
         # tmax - czas animacji (s)
         # dt - odstępy czasowe (s)
-        tmax = 6
+        tmax = int(values[8])
         dt = 0.01
 
         # s decyduje czy rysować ślady masy m
-        s1 = True
-        s2 = True
+        s1 = values["slad1"]
+        s2 = values["slad2"]
 
         # Promień rysowanego koła i kolory mas 1 i 2
         r = 0.05
-        kolor1 = "b"
-        kolor2 = "r"
+        if values["kolor1"] == "Czerwony":
+            kolor1 = "r"
+        elif values["kolor1"] == "Zielony":
+            kolor1 = "g"
+        elif values["kolor1"] == "Niebieski":
+            kolor1 = "b"
+        elif values["kolor1"] == "Yellow                                    ":
+            kolor1 = "y"
+
+        if values["kolor2"] == "Czerwony":
+            kolor2 = "r"
+        elif values["kolor2"] == "Zielony":
+            kolor2 = "g"
+        elif values["kolor2"] == "Niebieski":
+            kolor2 = "b"
+        elif values["kolor2"] == "Yellow                                    ":
+            kolor2 = "y"
+
 
         # Rysuje ślad masy m dla ostatnich trail_secs sekund
         trail_secs = 1
