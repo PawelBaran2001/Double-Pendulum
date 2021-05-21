@@ -236,7 +236,7 @@ def wahadlo():
 
         print("Znaleziono klatek: ", len(image_list), ". Trwa tworzenie animacji ...")
 
-        imageio.mimwrite('Animacja.gif', image_list, fps=fps)
+        imageio.mimwrite('frames/Animacja.gif', image_list, fps=fps)
 
         print("Proces zakończony sukcesem, utowrzono folder z kolejnymi klatkami oraz animację GIF")
         print("Możesz zmienić dane i wykonać symulację kolejny raz")
