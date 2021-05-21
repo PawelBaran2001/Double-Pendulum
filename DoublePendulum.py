@@ -92,8 +92,8 @@ def wahadlo():
         s2 = values["slad2"]
 
         # Promień rysowanych kulek uzaleznione od mas i kolory mas 1 i 2
-        r1 = float(values[2]) ** 0.33/20
-        r2 = float(values[3]) ** 0.33/20
+        r1 = float(values[2]) ** 0.33/15
+        r2 = float(values[3]) ** 0.33/15
 
         if values["kolor1"] == "Czerwony":
             kolor1 = "r"
@@ -212,8 +212,8 @@ def wahadlo():
                     ax.plot(x2[imin:imax], y2[imin:imax], c=kolor2, solid_capstyle='butt', lw=2, alpha=alpha)
 
             # Wyśrodkowanie obrazka i wyrównanie osi żeby były identyczne
-            ax.set_xlim(-l1 - l2 - r1, l1 + l2 + r2)
-            ax.set_ylim(-l1 - l2 - r1, l1 + l2 + r2)
+            ax.set_xlim(-l1 - l2 - r1 - r2, l1 + l2 + r2 + r1)
+            ax.set_ylim(-l1 - l2 - r1 - r2, l1 + l2 + r2 +r1)
             ax.set_aspect('equal', adjustable='box')
             plt.axis('off')
             plt.savefig('frames/_img{:04d}.png'.format(i // di), dpi=72)
