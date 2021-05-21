@@ -35,7 +35,7 @@ col2 = [[sG.Input(default_text=0)],  # value 0
         [sG.Input(default_text=1)],  # value 5
         [sG.Input(default_text=9.81)],  # value 6
         [sG.Input(default_text=25)],  # value 7
-        [sG.Input(default_text=6)],  # value 8
+        [sG.Input(default_text=5)],  # value 8
         [sG.Combo(["Czerwony", "Zielony", "Niebieski", "Yellow                                    "], default_value="Zielony", key="kolor1")],  # kolor1 value9
         [sG.Combo(["Czerwony", "Zielony", "Niebieski", "Yellow                                    "], default_value="Czerwony", key="kolor2")],  # kolor2 value10
         [sG.Checkbox("Tak", key="slad1", default=True)],  # slad1 value11
@@ -91,8 +91,10 @@ def wahadlo():
         s1 = values["slad1"]
         s2 = values["slad2"]
 
-        # Promień rysowanego koła i kolory mas 1 i 2
-        r = 0.05
+        # Promień rysowanych kulek uzaleznione od mas i kolory mas 1 i 2
+        r1 = float(values[2]) ** 0.33/10
+        r2 = float(values[3]) ** 0.33/10
+
         if values["kolor1"] == "Czerwony":
             kolor1 = "r"
         elif values["kolor1"] == "Zielony":
@@ -186,9 +188,9 @@ def wahadlo():
             # Renderuje i zapiuje klatkę chwilowego położenia mas i prętów w chwili i
             ax.plot([0, x1[i], x2[i]], [0, y1[i], y2[i]], lw=2, c='k')
             # Kulki kolejno punktu kotwiczenia, masy 1 i masy 2
-            c0 = Circle((0, 0), r / 2, fc='k', zorder=10)
-            c1 = Circle((x1[i], y1[i]), r, fc=kolor1, ec=kolor1, zorder=10)
-            c2 = Circle((x2[i], y2[i]), r, fc=kolor2, ec=kolor2, zorder=10)
+            c0 = Circle((0, 0), 0.05 / 2, fc='k', zorder=10)
+            c1 = Circle((x1[i], y1[i]), r1, fc=kolor1, ec=kolor1, zorder=10)
+            c2 = Circle((x2[i], y2[i]), r2, fc=kolor2, ec=kolor2, zorder=10)
             ax.add_patch(c0)
             ax.add_patch(c1)
             ax.add_patch(c2)
@@ -210,8 +212,8 @@ def wahadlo():
                     ax.plot(x2[imin:imax], y2[imin:imax], c=kolor2, solid_capstyle='butt', lw=2, alpha=alpha)
 
             # Wyśrodkowanie obrazka i wyrównanie osi żeby były identyczne
-            ax.set_xlim(-l1 - l2 - r, l1 + l2 + r)
-            ax.set_ylim(-l1 - l2 - r, l1 + l2 + r)
+            ax.set_xlim(-l1 - l2 - r1, l1 + l2 + r2)
+            ax.set_ylim(-l1 - l2 - r1, l1 + l2 + r2)
             ax.set_aspect('equal', adjustable='box')
             plt.axis('off')
             plt.savefig('frames/_img{:04d}.png'.format(i // di), dpi=72)
