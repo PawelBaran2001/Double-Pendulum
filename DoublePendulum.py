@@ -36,8 +36,8 @@ col2 = [[sG.Input(default_text=0)],  # value 0
         [sG.Input(default_text=9.81)],  # value 6
         [sG.Input(default_text=25)],  # value 7
         [sG.Input(default_text=5)],  # value 8
-        [sG.Combo(["Czerwony", "Zielony", "Niebieski", "Yellow                                    "], default_value="Zielony", key="kolor1")],  # kolor1 value9
-        [sG.Combo(["Czerwony", "Zielony", "Niebieski", "Yellow                                    "], default_value="Czerwony", key="kolor2")],  # kolor2 value10
+        [sG.Combo(["Czerwony", "Zielony", "Niebieski", "Żółty                                     "], default_value="Zielony", key="kolor1")],  # kolor1 value9
+        [sG.Combo(["Czerwony", "Zielony", "Niebieski", "Żółty                                     "], default_value="Czerwony", key="kolor2")],  # kolor2 value10
         [sG.Checkbox("Tak", key="slad1", default=True)],  # slad1 value11
         [sG.Checkbox("Tak", key="slad2", default=True)]]  # slad2 value12
 
@@ -101,7 +101,7 @@ def wahadlo():
             kolor1 = "g"
         elif values["kolor1"] == "Niebieski":
             kolor1 = "b"
-        elif values["kolor1"] == "Yellow                                    ":
+        elif values["kolor1"] == "Żółty                                     ":
             kolor1 = "y"
 
         if values["kolor2"] == "Czerwony":
@@ -110,7 +110,7 @@ def wahadlo():
             kolor2 = "g"
         elif values["kolor2"] == "Niebieski":
             kolor2 = "b"
-        elif values["kolor2"] == "Yellow                                    ":
+        elif values["kolor2"] == "Żółty                                     ":
             kolor2 = "y"
 
 
