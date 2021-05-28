@@ -763,9 +763,25 @@
    'c:\\programdata\\anaconda3\\envs\\double '
    'pendulum\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_typing.py',
    'PYMODULE'),
-  ('pkg_resources._vendor.packaging._compat',
+  ('pkg_resources._vendor.appdirs',
    'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_compat.py',
+   'pendulum\\lib\\site-packages\\pkg_resources\\_vendor\\appdirs.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.markers',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\markers.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.__about__',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__about__.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__init__.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.specifiers',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\specifiers.py',
    'PYMODULE'),
   ('pkg_resources._vendor.pyparsing',
    'c:\\programdata\\anaconda3\\envs\\double '
@@ -796,49 +812,33 @@
    'c:\\programdata\\anaconda3\\envs\\double '
    'pendulum\\lib\\ctypes\\macholib\\framework.py',
    'PYMODULE'),
-  ('pkg_resources._vendor.packaging',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__init__.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging._structures',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_structures.py',
-   'PYMODULE'),
   ('pkg_resources._vendor.packaging.tags',
    'c:\\programdata\\anaconda3\\envs\\double '
    'pendulum\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\tags.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging.specifiers',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\specifiers.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging.markers',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\markers.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\pkg_resources\\_vendor\\__init__.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.appdirs',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\pkg_resources\\_vendor\\appdirs.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging.requirements',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\requirements.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging.version',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\version.py',
    'PYMODULE'),
   ('pkg_resources._vendor.packaging.utils',
    'c:\\programdata\\anaconda3\\envs\\double '
    'pendulum\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\utils.py',
    'PYMODULE'),
-  ('pkg_resources._vendor.packaging.__about__',
+  ('pkg_resources._vendor.packaging.requirements',
    'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__about__.py',
+   'pendulum\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\requirements.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\pkg_resources\\_vendor\\__init__.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.version',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\version.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging._structures',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_structures.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging._compat',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_compat.py',
    'PYMODULE'),
   ('pkg_resources.extern',
    'c:\\programdata\\anaconda3\\envs\\double '
@@ -1089,29 +1089,25 @@
    'c:\\programdata\\anaconda3\\envs\\double '
    'pendulum\\lib\\site-packages\\PIL\\Image.py',
    'PYMODULE'),
-  ('PIL.MpoImagePlugin',
+  ('PIL.FpxImagePlugin',
    'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\MpoImagePlugin.py',
+   'pendulum\\lib\\site-packages\\PIL\\FpxImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PixarImagePlugin',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\PIL\\PixarImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.MpegImagePlugin',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\PIL\\MpegImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.WebPImagePlugin',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\PIL\\WebPImagePlugin.py',
    'PYMODULE'),
   ('PIL.BufrStubImagePlugin',
    'c:\\programdata\\anaconda3\\envs\\double '
    'pendulum\\lib\\site-packages\\PIL\\BufrStubImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.BlpImagePlugin',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\BlpImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.XbmImagePlugin',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\XbmImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.PsdImagePlugin',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\PsdImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.FtexImagePlugin',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\FtexImagePlugin.py',
    'PYMODULE'),
   ('PIL.IcnsImagePlugin',
    'c:\\programdata\\anaconda3\\envs\\double '
@@ -1121,54 +1117,6 @@
    'c:\\programdata\\anaconda3\\envs\\double '
    'pendulum\\lib\\site-packages\\PIL\\features.py',
    'PYMODULE'),
-  ('PIL.PcxImagePlugin',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\PcxImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.FitsStubImagePlugin',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\FitsStubImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.SgiImagePlugin',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\SgiImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.PixarImagePlugin',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\PixarImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.DcxImagePlugin',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\DcxImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.XVThumbImagePlugin',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\XVThumbImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.MicImagePlugin',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\MicImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.FliImagePlugin',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\FliImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.WebPImagePlugin',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\WebPImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.SunImagePlugin',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\SunImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.CurImagePlugin',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\CurImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.McIdasImagePlugin',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\McIdasImagePlugin.py',
-   'PYMODULE'),
   ('PIL.SpiderImagePlugin',
    'c:\\programdata\\anaconda3\\envs\\double '
    'pendulum\\lib\\site-packages\\PIL\\SpiderImagePlugin.py',
@@ -1177,57 +1125,105 @@
    'c:\\programdata\\anaconda3\\envs\\double '
    'pendulum\\lib\\site-packages\\PIL\\ImageTk.py',
    'PYMODULE'),
-  ('PIL.PcdImagePlugin',
+  ('PIL.MspImagePlugin',
    'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\PcdImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.IptcImagePlugin',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\IptcImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.IcoImagePlugin',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\IcoImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.GribStubImagePlugin',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\GribStubImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.Hdf5StubImagePlugin',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\Hdf5StubImagePlugin.py',
+   'pendulum\\lib\\site-packages\\PIL\\MspImagePlugin.py',
    'PYMODULE'),
   ('PIL.XpmImagePlugin',
    'c:\\programdata\\anaconda3\\envs\\double '
    'pendulum\\lib\\site-packages\\PIL\\XpmImagePlugin.py',
    'PYMODULE'),
-  ('PIL.GbrImagePlugin',
+  ('PIL.ImImagePlugin',
    'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\GbrImagePlugin.py',
+   'pendulum\\lib\\site-packages\\PIL\\ImImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.Hdf5StubImagePlugin',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\PIL\\Hdf5StubImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.GribStubImagePlugin',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\PIL\\GribStubImagePlugin.py',
    'PYMODULE'),
   ('PIL.ImtImagePlugin',
    'c:\\programdata\\anaconda3\\envs\\double '
    'pendulum\\lib\\site-packages\\PIL\\ImtImagePlugin.py',
    'PYMODULE'),
-  ('PIL.EpsImagePlugin',
-   'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\EpsImagePlugin.py',
-   'PYMODULE'),
   ('PIL.DdsImagePlugin',
    'c:\\programdata\\anaconda3\\envs\\double '
    'pendulum\\lib\\site-packages\\PIL\\DdsImagePlugin.py',
    'PYMODULE'),
-  ('PIL.WmfImagePlugin',
+  ('PIL.PsdImagePlugin',
    'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\WmfImagePlugin.py',
+   'pendulum\\lib\\site-packages\\PIL\\PsdImagePlugin.py',
    'PYMODULE'),
-  ('PIL.MspImagePlugin',
+  ('PIL.SgiImagePlugin',
    'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\MspImagePlugin.py',
+   'pendulum\\lib\\site-packages\\PIL\\SgiImagePlugin.py',
    'PYMODULE'),
-  ('PIL.TgaImagePlugin',
+  ('PIL.SunImagePlugin',
    'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\TgaImagePlugin.py',
+   'pendulum\\lib\\site-packages\\PIL\\SunImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PcdImagePlugin',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\PIL\\PcdImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.FitsStubImagePlugin',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\PIL\\FitsStubImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PalmImagePlugin',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\PIL\\PalmImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.IptcImagePlugin',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\PIL\\IptcImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.XbmImagePlugin',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\PIL\\XbmImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.FliImagePlugin',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\PIL\\FliImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.GbrImagePlugin',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\PIL\\GbrImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.MpoImagePlugin',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\PIL\\MpoImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PcxImagePlugin',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\PIL\\PcxImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.DcxImagePlugin',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\PIL\\DcxImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.FtexImagePlugin',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\PIL\\FtexImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.IcoImagePlugin',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\PIL\\IcoImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.Jpeg2KImagePlugin',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\PIL\\Jpeg2KImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.CurImagePlugin',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\PIL\\CurImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.BlpImagePlugin',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\PIL\\BlpImagePlugin.py',
    'PYMODULE'),
   ('PIL.PdfImagePlugin',
    'c:\\programdata\\anaconda3\\envs\\double '
@@ -1237,25 +1233,29 @@
    'c:\\programdata\\anaconda3\\envs\\double '
    'pendulum\\lib\\site-packages\\PIL\\PdfParser.py',
    'PYMODULE'),
-  ('PIL.ImImagePlugin',
+  ('PIL.McIdasImagePlugin',
    'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\ImImagePlugin.py',
+   'pendulum\\lib\\site-packages\\PIL\\McIdasImagePlugin.py',
    'PYMODULE'),
-  ('PIL.MpegImagePlugin',
+  ('PIL.EpsImagePlugin',
    'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\MpegImagePlugin.py',
+   'pendulum\\lib\\site-packages\\PIL\\EpsImagePlugin.py',
    'PYMODULE'),
-  ('PIL.Jpeg2KImagePlugin',
+  ('PIL.MicImagePlugin',
    'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\Jpeg2KImagePlugin.py',
+   'pendulum\\lib\\site-packages\\PIL\\MicImagePlugin.py',
    'PYMODULE'),
-  ('PIL.FpxImagePlugin',
+  ('PIL.TgaImagePlugin',
    'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\FpxImagePlugin.py',
+   'pendulum\\lib\\site-packages\\PIL\\TgaImagePlugin.py',
    'PYMODULE'),
-  ('PIL.PalmImagePlugin',
+  ('PIL.XVThumbImagePlugin',
    'c:\\programdata\\anaconda3\\envs\\double '
-   'pendulum\\lib\\site-packages\\PIL\\PalmImagePlugin.py',
+   'pendulum\\lib\\site-packages\\PIL\\XVThumbImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.WmfImagePlugin',
+   'c:\\programdata\\anaconda3\\envs\\double '
+   'pendulum\\lib\\site-packages\\PIL\\WmfImagePlugin.py',
    'PYMODULE'),
   ('PIL.TiffImagePlugin',
    'c:\\programdata\\anaconda3\\envs\\double '
