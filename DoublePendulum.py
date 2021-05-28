@@ -239,7 +239,11 @@ def wahadlo():
         imageio.mimwrite('frames/Animacja.gif', image_list, fps=fps)
 
         print("Proces zakończony sukcesem, utowrzono folder z kolejnymi klatkami oraz animację GIF")
-        os.startfile("Animacja.gif")
+        try:
+            os.startfile('frames\\Animacja.gif')
+        except:
+            print("Nie można uruchomić animacji automatycznie, spróbuj zrobić to ręcznie z folderu frames")
+
         print("Możesz zmienić dane i wykonać symulację kolejny raz")
         return 0
 
